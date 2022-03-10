@@ -2,22 +2,31 @@
 
 ### poetry による Python 環境のセットアップ
 
-- `sh init.sh`
+- ローカルに poetry をインストール(Poetry version 1.1.13)
 
-### 依存パッケージ のインストール
+  - `pip3 install poetry`
+  - or
+  - ```sh
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+    ```
 
-- `docker-compose run --entrypoint "poetry install" app`
+- バージョン確認
 
-- 新しい Python パッケージを追加した場合などは以下のようにイメージを再ビルドするだけで、 pyproject.toml に含まれている全てのパッケージをインストールすることができます。
+  - ```sh
+    $ poetry -V
+    Poetry version 1.1.13
+    ```
 
-- `docker-compose build --no-cache`
+### 仮想環境のセットアップ
+
+- poetry でライブラリをインストール (pyproject.toml が既にある場合)
+  - `sh init.sh`
+  - ルートディレクトリに仮想環境`.venv`フォルダが作られる。
 
 ### API の立ち上げ
 
-- `docker-compose up`
+- `sh run_api.sh`
 
 ### 追加パッケージのインストール
 
-- `docker-compose exec app poetry add {ライブラリ名}`
-
-- docker コンテナの中の Python 環境は、ローカル環境と異なるパス定義となるため、vscode ではそのままではパッケージの参照ができず、エラーの下線が表示されてしまう。そのため、仮想環境に入って、`poetry install or poetry update`をし、インタプリンタを仮想環境のものに変更する必要がある。
+- `poetry add <package-name>}`
