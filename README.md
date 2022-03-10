@@ -30,3 +30,15 @@
 ### 追加パッケージのインストール
 
 - `poetry add <package-name>}`
+
+### heroku へデプロイ
+
+```sh
+cd api
+heroku login
+git add . # ディレクトリ直下のファイルをgitの管理対象に追加
+git commit -m "first commit" # ファイルの変更をgitに登録
+
+heroku git:remote -a simple-eitango-test # Herokuとgitを関連づける
+git push heroku master # HerokuにPython(FastAPI)アプリをデプロイ(配備)
+```

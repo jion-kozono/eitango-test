@@ -1,8 +1,8 @@
 from typing import List
 from fastapi import APIRouter
 
-import api.schemas.word as word_schema
-from ..spreadsheet import sheet
+from schemas import word as word_schema
+from spreadsheet import sheet
 
 router = APIRouter()
 
