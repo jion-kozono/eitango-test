@@ -2,16 +2,19 @@ from typing import List
 from fastapi import APIRouter
 
 from schemas import word as word_schema
-from spreadsheet import sheet
+from cruds import word as word_cruds
 
 router = APIRouter()
 
+@router.get("/books/", response_model=List[str])
+async def getAllBooks():
+    book_names = word_cruds.getAllBooks()
+    return book_names
+
 @router.get("/words/{book_name}", response_model=List[word_schema.Word])
-async def getTestWords(first: int, last: int):
-    book_name = "Basic Words 早稲田アカデミー"
-    list_of_dicts = sheet.get_all_records()
-    filtered_list = list(filter(lambda i: i["book_name"] == book_name and first <= i["word_num"] <= last , list_of_dicts))
-    return filtered_list
+async def getTestWords(book_name: str, first: int, last: int):
+    words = word_cruds.getTestWords(book_name, first, last)
+    return words
 
 @router.get("/week-words/{book_name}")
 async def getTesWeektWords(first: int, last: int):
