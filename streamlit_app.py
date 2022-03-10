@@ -4,6 +4,9 @@ import pandas as pd
 
 from streamlit_utils import utils
 
+URL = "https://simple-eitango-test.herokuapp.com"
+# URL = "http://0.0.0.0:8000"
+
 utils.init()
 page = st.session_state.page
 words = st.session_state.words
@@ -14,8 +17,7 @@ if page == "create_test":
     st.write('#### テスト情報を入力してください。')
 
     with st.form(key="test-info"):
-        # url_books = 'https://simple-eitango-test.herokuapp.com/books/'
-        url_books = 'http://0.0.0.0:8000/books/'
+        url_books = f'{URL}/books/'
         res = requests.get(url_books)
         book_names = res.json()
         book_name: str = st.selectbox("単語帳名", book_names)
@@ -32,9 +34,9 @@ if page == "create_test":
             st.error(f'{book_name}という単語帳はありません。')
         else:
             # ユーザー一覧取得
-            # url_test_words = f'https://simple-eitango-test.herokuapp.com/words/{book_name}?first={first_num}&last={last_num}'
-            url_test_words = f'http://0.0.0.0:8000/words/{book_name}?first={first_num}&last={last_num}'
+            url_test_words = f'{URL}/words/{book_name}?first={first_num}&last={last_num}'
             res = requests.get(url_test_words)
+            print(res.json())
             if res.status_code == 200:
                 words = res.json()
                 st.session_state.words = words
