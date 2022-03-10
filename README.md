@@ -27,11 +27,15 @@
 
 - `sh run_api.sh`
 
+### Streamlit 起動
+
+- `streamlit run streamlit_app.py`
+
 ### 追加パッケージのインストール
 
 - `poetry add <package-name>}`
 
-### heroku へデプロイ
+### API を heroku へデプロイ
 
 ```sh
 cd api
