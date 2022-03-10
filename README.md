@@ -1,5 +1,9 @@
 # 簡易英単語アプリ
 
+### url
+
+https://share.streamlit.io/jion-kozono/eitango-test/main
+
 ### poetry による Python 環境のセットアップ
 
 - ローカルに poetry をインストール(Poetry version 1.1.13)
@@ -46,3 +50,7 @@ git commit -m "first commit" # ファイルの変更をgitに登録
 heroku git:remote -a simple-eitango-test # Herokuとgitを関連づける
 git push heroku master # HerokuにPython(FastAPI)アプリをデプロイ(配備)
 ```
+
+### Streamlit をデプロイ
+
+- github に push するだけ
