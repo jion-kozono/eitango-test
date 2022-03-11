@@ -1,4 +1,5 @@
 import streamlit as st
+
 # import streamlit.components.v1 as components
 
 def init():
@@ -18,7 +19,10 @@ def init():
         st.session_state.words = []
 
 def change_page(page):
-    st.session_state.page = page
+    if page == "test" and len(st.session_state.words) == 0:
+        st.error("苦手単語はありません。")
+    else:
+        st.session_state.page = page
 
 def changeWords(words):
     st.session_state.words = words

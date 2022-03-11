@@ -1,4 +1,3 @@
-import time
 import streamlit as st
 
 from streamlit_utils.requests import getAllBookNames, getAllWeekWords, getTestWords
