@@ -7,3 +7,6 @@ def init():
 
 def change_to_test_page():
     st.session_state.page = "test"
+
+def change_to_create_test_page():
+    st.session_state.page = "create_test"
