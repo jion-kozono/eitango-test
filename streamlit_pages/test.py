@@ -1,15 +1,8 @@
-import json
 import streamlit as st
 import pandas as pd
-import requests
 
-from streamlit_utils import constant, utils
-
-def postIsCorrect(data):
-    requests.post(
-        f'{constant.URL}/isCorrect/',
-        data=data
-    )
+from streamlit_utils.requests import postIsCorrect
+from streamlit_utils.utils import change_page
 
 def testPage(words):
     st.write('#### テストに解答してください')
@@ -68,8 +61,5 @@ def testPage(words):
             st.table(df_wrong_words)
             st.write('**間違えた問題は繰り返し復讐しましょう。**')
 
-        requests.post(
-            f'{constant.URL}/isCorrect/',
-            data=json.dumps(is_correct_list_of_dict)
-        )
-        st.button("テスト作成画面に戻る", on_click=utils.change_page("create_test"))
+        postIsCorrect(is_correct_list_of_dict)
+        st.button("テスト作成画面に戻る", on_click=change_page("create_test"))
