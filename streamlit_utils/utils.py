@@ -1,6 +1,13 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 def init():
+    # ホーム画面に追加できるようにする
+    components.html(
+        """
+        <meta name="mobile-web-app-capable" content="yes">
+        """
+    )
     st.set_page_config(
         page_title="英単語テスト",
         page_icon="📕",
