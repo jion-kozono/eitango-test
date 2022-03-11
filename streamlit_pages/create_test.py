@@ -14,6 +14,7 @@ def createTestPage():
         book_name: str = st.selectbox("単語帳名", book_names)
         first_num: int = st.number_input("最初の単語番号", step=1, min_value=1)
         last_num: int = st.number_input("最後の単語番号", step=1, min_value=2)
+        isOnlyWeek: bool = st.checkbox("苦手だけ（間違ったままの単語が出題されます）")
 
         submit_button = st.form_submit_button(label="テストを作成")
 
@@ -24,7 +25,7 @@ def createTestPage():
         elif book_name not in book_names:
             st.error(f'{book_name}という単語帳はありません。')
         else:
-            # ユーザー一覧取得
+            # テスト単語一覧取得
             url_test_words = f'{constant.URL}/words/{book_name}?first={first_num}&last={last_num}'
             res = requests.get(url_test_words)
             if res.status_code == 200:
