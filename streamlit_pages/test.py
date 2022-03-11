@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 from streamlit_utils.requests import postIsCorrect
-from streamlit_utils.utils import change_page
+from streamlit_utils.utils import backToCreateTestPage
 
 def testPage(words):
     st.write('#### テストに解答してください')
@@ -62,4 +62,5 @@ def testPage(words):
             st.write('**間違えた問題は繰り返し復讐しましょう。**')
 
         postIsCorrect(is_correct_list_of_dict)
-        st.button("テスト作成画面に戻る", on_click=change_page("create_test"))
+
+    backToCreateTestPage()

@@ -1,11 +1,11 @@
+import time
 import streamlit as st
-import requests
 
 from streamlit_utils.requests import getAllBookNames, getAllWeekWords, getTestWords
-from streamlit_utils.utils import change_page
+from streamlit_utils.utils import changeWords, change_page
 
 def createTestPage():
-    st.button("全ての苦手単語をテストする", on_click=lambda: [getAllWeekWords, change_page("test")])
+    st.button("全ての苦手単語をテストする", on_click=lambda: [changeWords(getAllWeekWords()), change_page("test")])
     st.write('#### テスト情報を入力してください。')
 
     with st.form(key="test-info"):
@@ -29,7 +29,7 @@ def createTestPage():
             if res.status_code == 200:
                 words = res.json()
                 if len(words) != 0:
-                    st.session_state.words = words
+                    changeWords(words)
                     st.success("テスト作成成功！")
                     st.button("作成したテストを開く", on_click=change_page("test"))
                 else:

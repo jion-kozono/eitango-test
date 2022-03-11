@@ -19,3 +19,9 @@ def init():
 
 def change_page(page):
     st.session_state.page = page
+
+def changeWords(words):
+    st.session_state.words = words
+
+def backToCreateTestPage():
+    st.button("テスト作成画面に戻る", on_click=lambda: [changeWords(None), change_page("create_test")])

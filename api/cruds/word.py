@@ -17,6 +17,12 @@ def getTestWords(book_name: str, first: int, last: int, is_only_week: bool):
         return list(filter(lambda i: i["book_name"] == book_name and first <= i["word_num"] <= last and int(i["is_correct"]) == -1, list_of_dicts))
     return list(filter(lambda i: i["book_name"] == book_name and first <= i["word_num"] <= last, list_of_dicts))
 
+# 苦手単語一覧取得
+def getAllWeekWords():
+    list_of_dicts = sheet.get_all_records()
+    return [i for i in list_of_dicts if int(i["is_correct"]) == -1] # 内包表記で表してみた
+    # return list(filter(lambda i: int(i["is_correct"]) == -1, list_of_dicts))
+
 def postIsCorrect(is_correct_list: List[word_schema.PostIsCorrectInput]):
     cell_list_to_update = []
     for is_correct_dict in is_correct_list:

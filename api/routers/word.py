@@ -20,18 +20,7 @@ async def getTestWords(book_name: str, first: int, last: int, is_only_week: bool
 async def postIsCorrect(is_correct_list: List[word_schema.PostIsCorrectInput]):
     return word_cruds.postIsCorrect(is_correct_list)
 
-@router.get("/week-words/{book_name}")
-async def getTesWeektWords(first: int, last: int):
-    return {
-        "message": "getTesWeektWords",
-        "first": first,
-        "last": last
-    }
-
-@router.get("/week-words/}")
-async def getWeekWords(first: int, last: int):
-    return {
-        "message": "getWeekWords",
-        "first": first,
-        "last": last
-    }
+@router.get("/weekWords/", response_model=List[word_schema.Word])
+async def getAllWeekWords():
+    week_words = word_cruds.getAllWeekWords()
+    return week_words

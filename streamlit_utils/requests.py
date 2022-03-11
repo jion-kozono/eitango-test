@@ -1,10 +1,14 @@
 import json
+import time
 import requests
+import streamlit as st
 
 from streamlit_utils.constant import URL
 
 def getAllWeekWords():
-    pass
+    url_week_words = f'{URL}/weekWords/'
+    res = requests.get(url_week_words)
+    return res.json()
 
 def getAllBookNames():
     url_books = f'{URL}/books/'
