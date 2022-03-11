@@ -16,6 +16,10 @@ async def getTestWords(book_name: str, first: int, last: int):
     words = word_cruds.getTestWords(book_name, first, last)
     return words
 
+@router.post("/isCorrect/", response_model=None)
+async def postIsCorrect(is_correct_list: List[word_schema.PostIsCorrectInput]):
+    return word_cruds.postIsCorrect(is_correct_list)
+
 @router.get("/week-words/{book_name}")
 async def getTesWeektWords(first: int, last: int):
     return {
@@ -31,8 +35,3 @@ async def getWeekWords(first: int, last: int):
         "first": first,
         "last": last
     }
-
-
-@router.post("/isCorrect/")
-async def postIsCorrect(req: List[word_schema.PostIsCorrectInput]):
-    return req

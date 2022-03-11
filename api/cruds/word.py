@@ -1,4 +1,7 @@
+from typing import List
 from spreadsheet import sheet
+
+from schemas import word as word_schema
 
 # テスト単語一覧取得
 def getAllBooks():
@@ -12,3 +15,19 @@ def getTestWords(book_name: str, first: int, last: int):
     list_of_dicts = sheet.get_all_records()
     filtered_list = list(filter(lambda i: i["book_name"] == book_name and first <= i["word_num"] <= last , list_of_dicts))
     return filtered_list
+
+def postIsCorrect(is_correct_list: List[word_schema.PostIsCorrectInput]):
+    cell_list_to_update = []
+    for is_correct_dict in is_correct_list:
+        # idで該当箇所を検索
+        id_cell = sheet.find(is_correct_dict.id)
+        # 取得したidと同じ行のisCorrectを取得
+        is_correct_cell = sheet.acell(f'F{id_cell.row}')
+        cell_value = int(is_correct_cell.value)
+        # 取得したisCorrectを解答のものと比較して、値を反転させるか判断
+        is_correct_cell.value = (- cell_value) if cell_value != int(is_correct_dict.isCorrect) else 0
+        if is_correct_cell.value != 0: # 値が変わらない場合は配列に入れない
+            cell_list_to_update.append(is_correct_cell)
+
+    # まとめて更新
+    sheet.update_cells(cell_list_to_update)

@@ -1,9 +1,10 @@
 from typing import Literal
 from pydantic import BaseModel, Field
 
-IsCorrect = Literal[0, 1]
+IsCorrect = Literal[1, -1]
 
 class Word(BaseModel):
+    id: str
     word: str
     meaning: str
     book_name: str = Field("Basic Words 早稲田アカデミー")
@@ -11,6 +12,5 @@ class Word(BaseModel):
     isCorrect: IsCorrect
 
 class PostIsCorrectInput(BaseModel):
-    book_name: str
-    word_num: int
+    id: str
     isCorrect: IsCorrect
