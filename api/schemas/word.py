@@ -9,8 +9,8 @@ class Word(BaseModel):
     meaning: str
     book_name: str = Field("Basic Words 早稲田アカデミー")
     word_num: int
-    isCorrect: IsCorrect
+    is_correct: IsCorrect
 
 class PostIsCorrectInput(BaseModel):
     id: str
-    isCorrect: IsCorrect
+    is_correct: IsCorrect

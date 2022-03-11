@@ -7,11 +7,11 @@ def test_post_is_correct():
     data = [
         {
             "id": "ID:1",
-            "isCorrect": -1,
+            "is_correct": -1,
         },
         {
             "id": "ID:2",
-            "isCorrect": 1,
+            "is_correct": 1,
         },
     ]
     res = requests.post(

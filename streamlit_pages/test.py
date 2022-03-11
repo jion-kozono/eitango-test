@@ -15,7 +15,7 @@ def testPage(words):
     st.write('#### テストに解答してください')
     with st.form(key="test"):
         # 正誤判定したリストと間違えた単語リストを作成
-        isCorrect_list_of_dict = []
+        is_correct_list_of_dict = []
         wrong_words = []
         score = 0
 
@@ -25,12 +25,12 @@ def testPage(words):
             meaning = word_info["meaning"]
             index = words.index(word_info)
             input_word: str = st.text_input(f'{index + 1}. {meaning} (No. {word_num})', key=index)
-            isCorrect = -1
+            is_correct = -1
             if input_word == word:
-                isCorrect = 1
+                is_correct = 1
                 score += 1
             else:
-                isCorrect = -1
+                is_correct = -1
                 wrong_words.append({
                     "": index + 1,
                     "あなたの答え": input_word,
@@ -38,11 +38,11 @@ def testPage(words):
                     "意味": meaning,
                     "No.": word_num,
                 })
-            isCorrect_dict = {
+            is_correct_dict = {
                 "id": word_info["id"],
-                "isCorrect": isCorrect,
+                "is_correct": int(is_correct),
             }
-            isCorrect_list_of_dict.append(isCorrect_dict)
+            is_correct_list_of_dict.append(is_correct_dict)
 
         submit_button = st.form_submit_button(label="解答を送信")
 
@@ -70,6 +70,6 @@ def testPage(words):
 
         requests.post(
             f'{constant.URL}/isCorrect/',
-            data=json.dumps(isCorrect_list_of_dict)
+            data=json.dumps(is_correct_list_of_dict)
         )
         st.button("テスト作成画面に戻る", on_click=utils.change_to_create_test_page)

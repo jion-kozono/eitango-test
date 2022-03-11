@@ -11,10 +11,11 @@ def getAllBooks():
     return filtered_book_names
 
 # テスト単語一覧取得
-def getTestWords(book_name: str, first: int, last: int):
+def getTestWords(book_name: str, first: int, last: int, is_only_week: bool):
     list_of_dicts = sheet.get_all_records()
-    filtered_list = list(filter(lambda i: i["book_name"] == book_name and first <= i["word_num"] <= last , list_of_dicts))
-    return filtered_list
+    if is_only_week:
+        return list(filter(lambda i: i["book_name"] == book_name and first <= i["word_num"] <= last and int(i["is_correct"]) == -1, list_of_dicts))
+    return list(filter(lambda i: i["book_name"] == book_name and first <= i["word_num"] <= last, list_of_dicts))
 
 def postIsCorrect(is_correct_list: List[word_schema.PostIsCorrectInput]):
     cell_list_to_update = []
@@ -25,7 +26,7 @@ def postIsCorrect(is_correct_list: List[word_schema.PostIsCorrectInput]):
         is_correct_cell = sheet.acell(f'F{id_cell.row}')
         cell_value = int(is_correct_cell.value)
         # 取得したisCorrectを解答のものと比較して、値を反転させるか判断
-        is_correct_cell.value = (- cell_value) if cell_value != int(is_correct_dict.isCorrect) else 0
+        is_correct_cell.value = (- cell_value) if cell_value != int(is_correct_dict.is_correct) else 0
         if is_correct_cell.value != 0: # 値が変わらない場合は配列に入れない
             cell_list_to_update.append(is_correct_cell)
 
