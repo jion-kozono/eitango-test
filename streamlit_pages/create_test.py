@@ -19,7 +19,6 @@ def createTestPage():
         submit_button = st.form_submit_button(label="テストを作成")
 
     if submit_button:
-        print(is_only_week)
         # 入力値バリデーション
         if first_num >= last_num:
             st.error('最後の単語番号は最初の単語番号より大きくなければなりません。')
