@@ -30,8 +30,11 @@ def createTestPage():
             res = requests.get(url_test_words)
             if res.status_code == 200:
                 words = res.json()
-                st.session_state.words = words
-                st.success("テスト作成成功！")
-                st.button("作成したテストを開く", on_click=utils.change_to_test_page)
+                if len(words) != 0:
+                    st.session_state.words = words
+                    st.success("テスト作成成功！")
+                    st.button("作成したテストを開く", on_click=utils.change_to_test_page)
+                else:
+                    st.error("苦手単語はありません。")
             else:
                 st.error("テスト作成に失敗しました。")
