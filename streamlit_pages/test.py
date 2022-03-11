@@ -72,4 +72,4 @@ def testPage(words):
             f'{constant.URL}/isCorrect/',
             data=json.dumps(is_correct_list_of_dict)
         )
-        st.button("テスト作成画面に戻る", on_click=utils.change_to_create_test_page)
+        st.button("テスト作成画面に戻る", on_click=utils.change_page("create_test"))

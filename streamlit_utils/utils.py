@@ -17,8 +17,5 @@ def init():
         st.session_state.page = 'create_test'
         st.session_state.words = []
 
-def change_to_test_page():
-    st.session_state.page = "test"
-
-def change_to_create_test_page():
-    st.session_state.page = "create_test"
+def change_page(page):
+    st.session_state.page = page
