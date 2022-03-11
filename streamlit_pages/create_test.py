@@ -27,7 +27,6 @@ def createTestPage():
             # ユーザー一覧取得
             url_test_words = f'{constant.URL}/words/{book_name}?first={first_num}&last={last_num}'
             res = requests.get(url_test_words)
-            print(res.json())
             if res.status_code == 200:
                 words = res.json()
                 st.session_state.words = words

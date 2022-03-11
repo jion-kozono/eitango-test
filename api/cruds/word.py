@@ -5,7 +5,7 @@ from schemas import word as word_schema
 
 # テスト単語一覧取得
 def getAllBooks():
-    book_name_list_of_list = sheet.get("C2:C")
+    book_name_list_of_list = sheet.get("D2:D")
     book_names = list(map(lambda book_name_list: book_name_list[0], book_name_list_of_list))
     filtered_book_names = list(set(book_names))
     return filtered_book_names
