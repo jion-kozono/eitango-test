@@ -7,12 +7,12 @@ def init():
         page_icon="📕",
         initial_sidebar_state="expanded",
     )
-    # ホーム画面に追加できるようにする
-    components.html(
-        """
-        <meta name="mobile-web-app-capable" content="yes">
-        """
-    )
+    # # TODO: ホーム画面に追加できるようにする
+    # components.html(
+    #     """
+    #     <meta name="mobile-web-app-capable" content="yes">
+    #     """
+    # )
     if 'page' not in st.session_state:
         st.session_state.page = 'create_test'
         st.session_state.words = []
