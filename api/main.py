@@ -8,7 +8,7 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:8080",
-    "http://http://localhost:58674/#/",
+    "https://simple-eitango-test-app.web.app"
 ]
 
 app.add_middleware(
