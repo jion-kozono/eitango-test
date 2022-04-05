@@ -1,4 +1,6 @@
-# 簡易英単語アプリ
+# 簡易英単語アプリ(streamlit版　メンテナンスなし)
+
+[こちら](https://github.com/jion-kozono/eitango-test-api)にapi部分だけ移動し、そこでメンテナンス
 
 ### url
 
