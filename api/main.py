@@ -6,8 +6,7 @@ from routers import word
 app = FastAPI()
 
 origins = [
-    "http://localhost",
-    "http://localhost:8080",
+    "http://localhost:*",
     "https://simple-eitango-test-app.web.app"
 ]
 
